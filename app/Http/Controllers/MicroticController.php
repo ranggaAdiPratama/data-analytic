@@ -24,11 +24,26 @@ class MicroticController extends Controller
     public function interfaceById($id)
     {
         try {
-            $query = new Query('/interface/list/print');
-
-            $query->where('.id', $id);
+            $query = (new Query('/interface/monitor-traffic'))
+                ->equal('interface', $id)
+                ->equal('duration', '1s');
 
             $response = $this->client->query($query)->read();
+
+            return $response;
+        } catch (Exception $e) {
+            if (env('APP_APP_DEBUG') == true) {
+                dd($e);
+            }
+
+            return apiResponse($e->getMessage(), 500, $e);
+        }
+    }
+
+    public function interfaceEthernetList()
+    {
+        try {
+            $response = $this->client->query('/interface/ethernet/print')->read();
 
             return $response;
         } catch (Exception $e) {

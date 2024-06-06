@@ -40,12 +40,12 @@
 							}
 						],
 						"url": {
-							"raw": "{{url}}interfaces/*2000001",
+							"raw": "{{url}}interfaces/*1",
 							"host": [
 								"{{url}}interfaces"
 							],
 							"path": [
-								"*2000001"
+								"*1"
 							]
 						}
 					},
@@ -68,6 +68,28 @@
 							],
 							"path": [
 								"wireless"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ethernet list",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{url}}interfaces/ethernet",
+							"host": [
+								"{{url}}interfaces"
+							],
+							"path": [
+								"ethernet"
 							]
 						}
 					},

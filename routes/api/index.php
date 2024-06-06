@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 
+Route::get('/interfaces/ethernet', [MicroticController::class, 'interfaceEthernetList']);
 Route::get('/interfaces', [MicroticController::class, 'interfaceList']);
 Route::get('/interfaces/wireless', [MicroticController::class, 'interfaceWirelessList']);
 Route::get('/interfaces/{id}', [MicroticController::class, 'interfaceById']);
