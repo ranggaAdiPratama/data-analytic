@@ -1,0 +1,4560 @@
+{
+	"info": {
+		"_postman_id": "4033b744-f859-48db-8d39-44c69587b53c",
+		"name": "E-Office",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11108847",
+		"_collection_link": "https://orange-shuttle-39637.postman.co/workspace/My-Workspace~19abc2a1-782c-4d73-8aa2-d8ce678a2725/collection/11108847-4033b744-f859-48db-8d39-44c69587b53c?action=share&source=collection_link&creator=11108847"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"\r",
+									"if(jsonData.statuscode == 200) {\r",
+									"postman.setEnvironmentVariable(\"authToken\", jsonData.data.token);\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-REQUEST-DECRYPTED",
+								"value": "Yes, Daddy",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "username",
+									"value": "admin-taut",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "12345678",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}auth/login",
+							"host": [
+								"{{url}}auth"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-REQUEST-DECRYPTED",
+								"value": "Yes, Daddy",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "12345678",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}auth/logout",
+							"host": [
+								"{{url}}auth"
+							],
+							"path": [
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "change password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-REQUEST-DECRYPTED",
+								"value": "Yes, Daddy",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "old_password",
+									"value": "12345678",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "12345678",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}auth/change-password",
+							"host": [
+								"{{url}}auth"
+							],
+							"path": [
+								"change-password"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Jenis Surat",
+			"item": [
+				{
+					"name": "jenis surat masuk",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-REQUEST-DECRYPTED",
+								"value": "Yes, Daddy",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "file",
+							"file": {}
+						},
+						"url": {
+							"raw": "{{url}}jenis-surat/in",
+							"host": [
+								"{{url}}jenis-surat"
+							],
+							"path": [
+								"in"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "jenis surat keluar",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-REQUEST-DECRYPTED",
+								"value": "Yes, Daddy",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "file",
+							"file": {}
+						},
+						"url": {
+							"raw": "{{url}}jenis-surat/out",
+							"host": [
+								"{{url}}jenis-surat"
+							],
+							"path": [
+								"out"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-REQUEST-DECRYPTED",
+								"value": "Yes, Daddy",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "file",
+							"file": {}
+						},
+						"url": {
+							"raw": "{{url}}jenis-surat/16",
+							"host": [
+								"{{url}}jenis-surat"
+							],
+							"path": [
+								"16"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "store",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-REQUEST-DECRYPTED",
+								"value": "Yes, Daddy",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "tes",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": "cok",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}jenis-surat",
+							"host": [
+								"{{url}}jenis-surat"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-REQUEST-DECRYPTED",
+								"value": "Yes, Daddy",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "tes2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}jenis-surat/16",
+							"host": [
+								"{{url}}jenis-surat"
+							],
+							"path": [
+								"16"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-REQUEST-DECRYPTED",
+								"value": "Yes, Daddy",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "tes2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}jenis-surat/16",
+							"host": [
+								"{{url}}jenis-surat"
+							],
+							"path": [
+								"16"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Bidang",
+			"item": [
+				{
+					"name": "list",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-REQUEST-DECRYPTED",
+								"value": "Yes, Daddy",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "file",
+							"file": {}
+						},
+						"url": {
+							"raw": "{{url}}bidang",
+							"host": [
+								"{{url}}bidang"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-REQUEST-DECRYPTED",
+								"value": "Yes, Daddy",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "file",
+							"file": {}
+						},
+						"url": {
+							"raw": "{{url}}bidang/1",
+							"host": [
+								"{{url}}bidang"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "store",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-REQUEST-DECRYPTED",
+								"value": "Yes, Daddy",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "a",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}bidang",
+							"host": [
+								"{{url}}bidang"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-REQUEST-DECRYPTED",
+								"value": "Yes, Daddy",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "b",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}bidang/4",
+							"host": [
+								"{{url}}bidang"
+							],
+							"path": [
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-REQUEST-DECRYPTED",
+								"value": "Yes, Daddy",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "b",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}bidang/4",
+							"host": [
+								"{{url}}bidang"
+							],
+							"path": [
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Surat masuk",
+			"item": [
+				{
+					"name": "store",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-REQUEST-DECRYPTED",
+								"value": "Yes, Daddy",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "attachments[]",
+									"type": "file",
+									"src": "/C:/Users/Rangga/Pictures/GI team.png",
+									"disabled": true
+								},
+								{
+									"key": "attachments[]",
+									"type": "file",
+									"src": "/C:/Users/Rangga/Pictures/scascdascax.png",
+									"disabled": true
+								},
+								{
+									"key": "letter_type_id",
+									"value": "9",
+									"type": "text"
+								},
+								{
+									"key": "to[]",
+									"value": "14",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "to[]",
+									"value": "15",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "klasifikasi",
+									"value": "a",
+									"type": "text"
+								},
+								{
+									"key": "derajat",
+									"value": "4ew",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "tbtrhtrhtrhtrht6",
+									"type": "text"
+								},
+								{
+									"key": "tembusan[]",
+									"value": "14",
+									"type": "text"
+								},
+								{
+									"key": "tembusan[]",
+									"value": "15",
+									"type": "text"
+								},
+								{
+									"key": "number",
+									"value": "dcewcfewcfwdeascdae",
+									"type": "text"
+								},
+								{
+									"key": "satuan",
+									"value": "dweferw",
+									"type": "text"
+								},
+								{
+									"key": "sender",
+									"value": "gtvrbgtryg",
+									"type": "text"
+								},
+								{
+									"key": "created_at",
+									"value": "30-01-2010",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}surat-masuk",
+							"host": [
+								"{{url}}surat-masuk"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "paraf pimpinan",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-REQUEST-DECRYPTED",
+								"value": "Yes, Daddy",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}surat-masuk/pimpinan-approve/1",
+							"host": [
+								"{{url}}surat-masuk"
+							],
+							"path": [
+								"pimpinan-approve",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "disposisi",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-REQUEST-DECRYPTED",
+								"value": "Yes, Daddy",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "to[]",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "to[]",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "note",
+									"value": "dfgvrtfrbgtrbhtrh",
+									"type": "text"
+								},
+								{
+									"key": "command_id",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}surat-masuk/disposisi/1",
+							"host": [
+								"{{url}}surat-masuk"
+							],
+							"path": [
+								"disposisi",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-REQUEST-DECRYPTED",
+								"value": "Yes, Daddy",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "attachments[]",
+									"type": "file",
+									"src": "/C:/Users/Rangga/Pictures/GI team.png"
+								},
+								{
+									"key": "attachments[]",
+									"type": "file",
+									"src": "/C:/Users/Rangga/Pictures/scascdascax.png",
+									"disabled": true
+								},
+								{
+									"key": "letter_type_id",
+									"value": "9",
+									"type": "text"
+								},
+								{
+									"key": "field_id[]",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "klasifikasi",
+									"value": "a",
+									"type": "text"
+								},
+								{
+									"key": "derajat",
+									"value": "4ew",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "tbtrhtrhtrhtrht6",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}surat-masuk",
+							"host": [
+								"{{url}}surat-masuk"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-REQUEST-DECRYPTED",
+								"value": "Yes, Daddy",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "attachments[]",
+									"type": "file",
+									"src": "/C:/Users/Rangga/Pictures/GI team.png"
+								},
+								{
+									"key": "attachments[]",
+									"type": "file",
+									"src": "/C:/Users/Rangga/Pictures/scascdascax.png",
+									"disabled": true
+								},
+								{
+									"key": "letter_type_id",
+									"value": "9",
+									"type": "text"
+								},
+								{
+									"key": "field_id[]",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "klasifikasi",
+									"value": "a",
+									"type": "text"
+								},
+								{
+									"key": "derajat",
+									"value": "4ew",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "tbtrhtrhtrhtrht6",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}surat-masuk/1",
+							"host": [
+								"{{url}}surat-masuk"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "log komen",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-REQUEST-DECRYPTED",
+								"value": "Yes, Daddy",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "attachments[]",
+									"type": "file",
+									"src": "/C:/Users/Rangga/Pictures/GI team.png"
+								},
+								{
+									"key": "attachments[]",
+									"type": "file",
+									"src": "/C:/Users/Rangga/Pictures/scascdascax.png",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}surat-masuk/comment/1",
+							"host": [
+								"{{url}}surat-masuk"
+							],
+							"path": [
+								"comment",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "komen",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-REQUEST-DECRYPTED",
+								"value": "Yes, Daddy",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "comment",
+									"value": "sip",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}surat-masuk/comment/1",
+							"host": [
+								"{{url}}surat-masuk"
+							],
+							"path": [
+								"comment",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list untuk ttd",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-REQUEST-DECRYPTED",
+								"value": "Yes, Daddy",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "attachments[]",
+									"type": "file",
+									"src": "/C:/Users/Rangga/Pictures/GI team.png"
+								},
+								{
+									"key": "attachments[]",
+									"type": "file",
+									"src": "/C:/Users/Rangga/Pictures/scascdascax.png",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}surat-masuk/inbox",
+							"host": [
+								"{{url}}surat-masuk"
+							],
+							"path": [
+								"inbox"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "read list untuk ttd",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-REQUEST-DECRYPTED",
+								"value": "Yes, Daddy",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "attachments[]",
+									"type": "file",
+									"src": "/C:/Users/Rangga/Pictures/GI team.png"
+								},
+								{
+									"key": "attachments[]",
+									"type": "file",
+									"src": "/C:/Users/Rangga/Pictures/scascdascax.png",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}surat-masuk/inbox/read/2",
+							"host": [
+								"{{url}}surat-masuk"
+							],
+							"path": [
+								"inbox",
+								"read",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "unread list untuk ttd",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-REQUEST-DECRYPTED",
+								"value": "Yes, Daddy",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "attachments[]",
+									"type": "file",
+									"src": "/C:/Users/Rangga/Pictures/GI team.png"
+								},
+								{
+									"key": "attachments[]",
+									"type": "file",
+									"src": "/C:/Users/Rangga/Pictures/scascdascax.png",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}surat-masuk/inbox/unread/1",
+							"host": [
+								"{{url}}surat-masuk"
+							],
+							"path": [
+								"inbox",
+								"unread",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ttd surat masuk",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-REQUEST-DECRYPTED",
+								"value": "Yes, Daddy",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "attachments[]",
+									"type": "file",
+									"src": "/C:/Users/Rangga/Pictures/GI team.png"
+								},
+								{
+									"key": "attachments[]",
+									"type": "file",
+									"src": "/C:/Users/Rangga/Pictures/scascdascax.png",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}surat-masuk/inbox/sign/1",
+							"host": [
+								"{{url}}surat-masuk"
+							],
+							"path": [
+								"inbox",
+								"sign",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list untuk tembusan",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-REQUEST-DECRYPTED",
+								"value": "Yes, Daddy",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "attachments[]",
+									"type": "file",
+									"src": "/C:/Users/Rangga/Pictures/GI team.png"
+								},
+								{
+									"key": "attachments[]",
+									"type": "file",
+									"src": "/C:/Users/Rangga/Pictures/scascdascax.png",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}surat-masuk/inbox-tembusan",
+							"host": [
+								"{{url}}surat-masuk"
+							],
+							"path": [
+								"inbox-tembusan"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "read list untuk tembusan",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-REQUEST-DECRYPTED",
+								"value": "Yes, Daddy",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "attachments[]",
+									"type": "file",
+									"src": "/C:/Users/Rangga/Pictures/GI team.png"
+								},
+								{
+									"key": "attachments[]",
+									"type": "file",
+									"src": "/C:/Users/Rangga/Pictures/scascdascax.png",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}surat-masuk/inbox-tembusan/read/1",
+							"host": [
+								"{{url}}surat-masuk"
+							],
+							"path": [
+								"inbox-tembusan",
+								"read",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "unread list untuk tembusan",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-REQUEST-DECRYPTED",
+								"value": "Yes, Daddy",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "attachments[]",
+									"type": "file",
+									"src": "/C:/Users/Rangga/Pictures/GI team.png"
+								},
+								{
+									"key": "attachments[]",
+									"type": "file",
+									"src": "/C:/Users/Rangga/Pictures/scascdascax.png",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}surat-masuk/inbox-tembusan/unread/1",
+							"host": [
+								"{{url}}surat-masuk"
+							],
+							"path": [
+								"inbox-tembusan",
+								"unread",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "paraf surat masuk",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-REQUEST-DECRYPTED",
+								"value": "Yes, Daddy",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "attachments[]",
+									"type": "file",
+									"src": "/C:/Users/Rangga/Pictures/GI team.png"
+								},
+								{
+									"key": "attachments[]",
+									"type": "file",
+									"src": "/C:/Users/Rangga/Pictures/scascdascax.png",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}surat-masuk/inbox-tembusan/sign/1",
+							"host": [
+								"{{url}}surat-masuk"
+							],
+							"path": [
+								"inbox-tembusan",
+								"sign",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "hitung terkirim",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-REQUEST-DECRYPTED",
+								"value": "Yes, Daddy",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "attachments[]",
+									"type": "file",
+									"src": "/C:/Users/Rangga/Pictures/GI team.png"
+								},
+								{
+									"key": "attachments[]",
+									"type": "file",
+									"src": "/C:/Users/Rangga/Pictures/scascdascax.png",
+									"disabled": true
+								},
+								{
+									"key": "letter_type_id",
+									"value": "9",
+									"type": "text"
+								},
+								{
+									"key": "field_id[]",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "klasifikasi",
+									"value": "a",
+									"type": "text"
+								},
+								{
+									"key": "derajat",
+									"value": "4ew",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "tbtrhtrhtrhtrht6",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}surat-masuk/notification",
+							"host": [
+								"{{url}}surat-masuk"
+							],
+							"path": [
+								"notification"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Role",
+			"item": [
+				{
+					"name": "list",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-REQUEST-DECRYPTED",
+								"value": "Yes, Daddy",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "file",
+							"file": {}
+						},
+						"url": {
+							"raw": "{{url}}roles",
+							"host": [
+								"{{url}}roles"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "list",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-REQUEST-DECRYPTED",
+								"value": "Yes, Daddy",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "file",
+							"file": {}
+						},
+						"url": {
+							"raw": "{{url}}users",
+							"host": [
+								"{{url}}users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-REQUEST-DECRYPTED",
+								"value": "Yes, Daddy",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "file",
+							"file": {}
+						},
+						"url": {
+							"raw": "{{url}}user/1",
+							"host": [
+								"{{url}}user"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "store",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-REQUEST-DECRYPTED",
+								"value": "Yes, Daddy",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "sda",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "tes@mail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "12345678",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "tbhegvdcsxcdeevgtryhtuj",
+									"type": "text"
+								},
+								{
+									"key": "field_id",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "role_id",
+									"value": "4",
+									"type": "text"
+								},
+								{
+									"key": "signature",
+									"type": "file",
+									"src": "/C:/Users/Rangga/Pictures/kiss at park.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}user",
+							"host": [
+								"{{url}}user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-REQUEST-DECRYPTED",
+								"value": "Yes, Daddy",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "sda",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "tes@mail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "12345678",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "username",
+									"value": "tbhegvdcsxcdeevgtryhtuj",
+									"type": "text"
+								},
+								{
+									"key": "field_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "role_id",
+									"value": "3",
+									"type": "text"
+								},
+								{
+									"key": "signature",
+									"type": "file",
+									"src": "/C:/Users/Rangga/Pictures/kiss at park.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}user/11",
+							"host": [
+								"{{url}}user"
+							],
+							"path": [
+								"11"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-REQUEST-DECRYPTED",
+								"value": "Yes, Daddy",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "sda",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "tes@mail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "12345678",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "username",
+									"value": "tbhegvdcsxcdeevgtryhtuj",
+									"type": "text"
+								},
+								{
+									"key": "field_id",
+									"value": "3",
+									"type": "text"
+								},
+								{
+									"key": "role_id",
+									"value": "3",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}user/15",
+							"host": [
+								"{{url}}user"
+							],
+							"path": [
+								"15"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list kontak",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-REQUEST-DECRYPTED",
+								"value": "Yes, Daddy",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "file",
+							"file": {}
+						},
+						"url": {
+							"raw": "{{url}}contacts",
+							"host": [
+								"{{url}}contacts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "activate user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-REQUEST-DECRYPTED",
+								"value": "Yes, Daddy",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "file",
+							"file": {}
+						},
+						"url": {
+							"raw": "{{url}}user-activate/3",
+							"host": [
+								"{{url}}user-activate"
+							],
+							"path": [
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "profile",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-REQUEST-DECRYPTED",
+								"value": "Yes, Daddy",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "file",
+							"file": {}
+						},
+						"url": {
+							"raw": "{{url}}profile",
+							"host": [
+								"{{url}}profile"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Paraf",
+			"item": [
+				{
+					"name": "waka",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-REQUEST-DECRYPTED",
+								"value": "Yes, Daddy",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "attachments[]",
+									"type": "file",
+									"src": "/C:/Users/Rangga/Pictures/GI team.png"
+								},
+								{
+									"key": "attachments[]",
+									"type": "file",
+									"src": "/C:/Users/Rangga/Pictures/scascdascax.png",
+									"disabled": true
+								},
+								{
+									"key": "letter_type_id",
+									"value": "9",
+									"type": "text"
+								},
+								{
+									"key": "field_id[]",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "klasifikasi",
+									"value": "a",
+									"type": "text"
+								},
+								{
+									"key": "derajat",
+									"value": "4ew",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "tbtrhtrhtrhtrht6",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{weburl}}assets/signature/waka.png",
+							"host": [
+								"{{weburl}}assets"
+							],
+							"path": [
+								"signature",
+								"waka.png"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "pimpinan",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-REQUEST-DECRYPTED",
+								"value": "Yes, Daddy",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "attachments[]",
+									"type": "file",
+									"src": "/C:/Users/Rangga/Pictures/GI team.png"
+								},
+								{
+									"key": "attachments[]",
+									"type": "file",
+									"src": "/C:/Users/Rangga/Pictures/scascdascax.png",
+									"disabled": true
+								},
+								{
+									"key": "letter_type_id",
+									"value": "9",
+									"type": "text"
+								},
+								{
+									"key": "field_id[]",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "klasifikasi",
+									"value": "a",
+									"type": "text"
+								},
+								{
+									"key": "derajat",
+									"value": "4ew",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "tbtrhtrhtrhtrht6",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{weburl}}assets/signature/pimpinan.png",
+							"host": [
+								"{{weburl}}assets"
+							],
+							"path": [
+								"signature",
+								"pimpinan.png"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Instruksi",
+			"item": [
+				{
+					"name": "list",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-REQUEST-DECRYPTED",
+								"value": "Yes, Daddy",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "attachments[]",
+									"type": "file",
+									"src": "/C:/Users/Rangga/Pictures/GI team.png"
+								},
+								{
+									"key": "attachments[]",
+									"type": "file",
+									"src": "/C:/Users/Rangga/Pictures/scascdascax.png",
+									"disabled": true
+								},
+								{
+									"key": "letter_type_id",
+									"value": "9",
+									"type": "text"
+								},
+								{
+									"key": "field_id[]",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "klasifikasi",
+									"value": "a",
+									"type": "text"
+								},
+								{
+									"key": "derajat",
+									"value": "4ew",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "tbtrhtrhtrhtrht6",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}commands",
+							"host": [
+								"{{url}}commands"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Surat Keluar",
+			"item": [
+				{
+					"name": "tahap 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-REQUEST-DECRYPTED",
+								"value": "Yes, Daddy",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "attachments[]",
+									"type": "file",
+									"src": "/C:/Users/Rangga/Pictures/kiss at park.png",
+									"disabled": true
+								},
+								{
+									"key": "attachments[]",
+									"type": "file",
+									"src": "/C:/Users/Rangga/Pictures/scascdascax.png",
+									"disabled": true
+								},
+								{
+									"key": "letter_type_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "to[]",
+									"value": "3",
+									"type": "text"
+								},
+								{
+									"key": "to[]",
+									"value": "4",
+									"type": "text"
+								},
+								{
+									"key": "klasifikasi",
+									"value": "a",
+									"type": "text"
+								},
+								{
+									"key": "derajat",
+									"value": "4ew",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "tbtrhtrhtrhtrht6",
+									"type": "text"
+								},
+								{
+									"key": "tembusan[]",
+									"value": "5",
+									"type": "text"
+								},
+								{
+									"key": "tembusan[]",
+									"value": "6",
+									"type": "text"
+								},
+								{
+									"key": "cc[]",
+									"value": "7",
+									"type": "text"
+								},
+								{
+									"key": "cc[]",
+									"value": "8",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}surat-keluar",
+							"host": [
+								"{{url}}surat-keluar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-REQUEST-DECRYPTED",
+								"value": "Yes, Daddy",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}surat-keluar",
+							"host": [
+								"{{url}}surat-keluar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-REQUEST-DECRYPTED",
+								"value": "Yes, Daddy",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}surat-keluar/1",
+							"host": [
+								"{{url}}surat-keluar"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "to read",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-REQUEST-DECRYPTED",
+								"value": "Yes, Daddy",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}surat-keluar/read/to/1",
+							"host": [
+								"{{url}}surat-keluar"
+							],
+							"path": [
+								"read",
+								"to",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "to unread",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-REQUEST-DECRYPTED",
+								"value": "Yes, Daddy",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}surat-keluar/unread/to/1",
+							"host": [
+								"{{url}}surat-keluar"
+							],
+							"path": [
+								"unread",
+								"to",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "to paraf",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-REQUEST-DECRYPTED",
+								"value": "Yes, Daddy",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}surat-keluar/sign/to/1",
+							"host": [
+								"{{url}}surat-keluar"
+							],
+							"path": [
+								"sign",
+								"to",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cc read",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-REQUEST-DECRYPTED",
+								"value": "Yes, Daddy",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}surat-keluar/read/cc/1",
+							"host": [
+								"{{url}}surat-keluar"
+							],
+							"path": [
+								"read",
+								"cc",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cc unread",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-REQUEST-DECRYPTED",
+								"value": "Yes, Daddy",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}surat-keluar/unread/cc/1",
+							"host": [
+								"{{url}}surat-keluar"
+							],
+							"path": [
+								"unread",
+								"cc",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cc paraf",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-REQUEST-DECRYPTED",
+								"value": "Yes, Daddy",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}surat-keluar/sign/cc/1",
+							"host": [
+								"{{url}}surat-keluar"
+							],
+							"path": [
+								"sign",
+								"cc",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "tembusan read",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-REQUEST-DECRYPTED",
+								"value": "Yes, Daddy",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "attachments[]",
+									"type": "file",
+									"src": "/C:/Users/Rangga/Pictures/GI team.png"
+								},
+								{
+									"key": "attachments[]",
+									"type": "file",
+									"src": "/C:/Users/Rangga/Pictures/kiss at park.png"
+								},
+								{
+									"key": "letter_type_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "to[]",
+									"value": "3",
+									"type": "text"
+								},
+								{
+									"key": "to[]",
+									"value": "4",
+									"type": "text"
+								},
+								{
+									"key": "klasifikasi",
+									"value": "a",
+									"type": "text"
+								},
+								{
+									"key": "derajat",
+									"value": "4ew",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "tbtrhtrhtrhtrht6",
+									"type": "text"
+								},
+								{
+									"key": "tembusan[]",
+									"value": "5",
+									"type": "text"
+								},
+								{
+									"key": "tembusan[]",
+									"value": "6",
+									"type": "text"
+								},
+								{
+									"key": "cc[]",
+									"value": "7",
+									"type": "text"
+								},
+								{
+									"key": "cc[]",
+									"value": "8",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}surat-keluar/read/tembusan/1",
+							"host": [
+								"{{url}}surat-keluar"
+							],
+							"path": [
+								"read",
+								"tembusan",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "tembusan unread",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-REQUEST-DECRYPTED",
+								"value": "Yes, Daddy",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "attachments[]",
+									"type": "file",
+									"src": "/C:/Users/Rangga/Pictures/GI team.png"
+								},
+								{
+									"key": "attachments[]",
+									"type": "file",
+									"src": "/C:/Users/Rangga/Pictures/kiss at park.png"
+								},
+								{
+									"key": "letter_type_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "to[]",
+									"value": "3",
+									"type": "text"
+								},
+								{
+									"key": "to[]",
+									"value": "4",
+									"type": "text"
+								},
+								{
+									"key": "klasifikasi",
+									"value": "a",
+									"type": "text"
+								},
+								{
+									"key": "derajat",
+									"value": "4ew",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "tbtrhtrhtrhtrht6",
+									"type": "text"
+								},
+								{
+									"key": "tembusan[]",
+									"value": "5",
+									"type": "text"
+								},
+								{
+									"key": "tembusan[]",
+									"value": "6",
+									"type": "text"
+								},
+								{
+									"key": "cc[]",
+									"value": "7",
+									"type": "text"
+								},
+								{
+									"key": "cc[]",
+									"value": "8",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}surat-keluar/unread/tembusan/1",
+							"host": [
+								"{{url}}surat-keluar"
+							],
+							"path": [
+								"unread",
+								"tembusan",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "tembusan paraf",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-REQUEST-DECRYPTED",
+								"value": "Yes, Daddy",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "attachments[]",
+									"type": "file",
+									"src": "/C:/Users/Rangga/Pictures/GI team.png"
+								},
+								{
+									"key": "attachments[]",
+									"type": "file",
+									"src": "/C:/Users/Rangga/Pictures/kiss at park.png"
+								},
+								{
+									"key": "letter_type_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "to[]",
+									"value": "3",
+									"type": "text"
+								},
+								{
+									"key": "to[]",
+									"value": "4",
+									"type": "text"
+								},
+								{
+									"key": "klasifikasi",
+									"value": "a",
+									"type": "text"
+								},
+								{
+									"key": "derajat",
+									"value": "4ew",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "tbtrhtrhtrhtrht6",
+									"type": "text"
+								},
+								{
+									"key": "tembusan[]",
+									"value": "5",
+									"type": "text"
+								},
+								{
+									"key": "tembusan[]",
+									"value": "6",
+									"type": "text"
+								},
+								{
+									"key": "cc[]",
+									"value": "7",
+									"type": "text"
+								},
+								{
+									"key": "cc[]",
+									"value": "8",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}surat-keluar/sign/tembusan/1",
+							"host": [
+								"{{url}}surat-keluar"
+							],
+							"path": [
+								"sign",
+								"tembusan",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "tolak",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-REQUEST-DECRYPTED",
+								"value": "Yes, Daddy",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "note",
+									"value": "tes",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}surat-keluar/deny/1",
+							"host": [
+								"{{url}}surat-keluar"
+							],
+							"path": [
+								"deny",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit surat keluar",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-REQUEST-DECRYPTED",
+								"value": "Yes, Daddy",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "attachments[]",
+									"type": "file",
+									"src": "/C:/Users/Rangga/Pictures/scascdascax.png"
+								},
+								{
+									"key": "attachments[]",
+									"type": "file",
+									"src": "/C:/Users/Rangga/Pictures/kiss at park.png",
+									"disabled": true
+								},
+								{
+									"key": "letter_type_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "to[]",
+									"value": "3",
+									"type": "text"
+								},
+								{
+									"key": "to[]",
+									"value": "9",
+									"type": "text"
+								},
+								{
+									"key": "klasifikasi",
+									"value": "a",
+									"type": "text"
+								},
+								{
+									"key": "derajat",
+									"value": "4ew",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "tbtrhtrhtrhtrht6",
+									"type": "text"
+								},
+								{
+									"key": "tembusan[]",
+									"value": "5",
+									"type": "text"
+								},
+								{
+									"key": "tembusan[]",
+									"value": "6",
+									"type": "text"
+								},
+								{
+									"key": "cc[]",
+									"value": "7",
+									"type": "text"
+								},
+								{
+									"key": "cc[]",
+									"value": "8",
+									"type": "text"
+								},
+								{
+									"key": "attachment_id[]",
+									"value": "9",
+									"type": "text"
+								},
+								{
+									"key": "attachment_id[]",
+									"value": "2",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}surat-keluar/1",
+							"host": [
+								"{{url}}surat-keluar"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "kabid paraf",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-REQUEST-DECRYPTED",
+								"value": "Yes, Daddy",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}surat-keluar/sign/kabid/1",
+							"host": [
+								"{{url}}surat-keluar"
+							],
+							"path": [
+								"sign",
+								"kabid",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "bagsur paraf",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-REQUEST-DECRYPTED",
+								"value": "Yes, Daddy",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}surat-keluar/sign/bagsur/1",
+							"host": [
+								"{{url}}surat-keluar"
+							],
+							"path": [
+								"sign",
+								"bagsur",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "kabagsur paraf",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-REQUEST-DECRYPTED",
+								"value": "Yes, Daddy",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}surat-keluar/sign/kabagsur/1",
+							"host": [
+								"{{url}}surat-keluar"
+							],
+							"path": [
+								"sign",
+								"kabagsur",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "kabidum paraf",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-REQUEST-DECRYPTED",
+								"value": "Yes, Daddy",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}surat-keluar/sign/kabidum/1",
+							"host": [
+								"{{url}}surat-keluar"
+							],
+							"path": [
+								"sign",
+								"kabidum",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "waka paraf",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-REQUEST-DECRYPTED",
+								"value": "Yes, Daddy",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}surat-keluar/sign/waka/1",
+							"host": [
+								"{{url}}surat-keluar"
+							],
+							"path": [
+								"sign",
+								"waka",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "pimpinan paraf",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-REQUEST-DECRYPTED",
+								"value": "Yes, Daddy",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}surat-keluar/sign/pimpinan/1",
+							"host": [
+								"{{url}}surat-keluar"
+							],
+							"path": [
+								"sign",
+								"pimpinan",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "penomoran surat",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-REQUEST-DECRYPTED",
+								"value": "Yes, Daddy",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "number",
+									"value": "azesxrijmk,pl",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}surat-keluar/penomoran/1",
+							"host": [
+								"{{url}}surat-keluar"
+							],
+							"path": [
+								"penomoran",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "hitung terkirim",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-REQUEST-DECRYPTED",
+								"value": "Yes, Daddy",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}surat-keluar/notification",
+							"host": [
+								"{{url}}surat-keluar"
+							],
+							"path": [
+								"notification"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Misc",
+			"item": [
+				{
+					"name": "log surat dalam proses",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-REQUEST-DECRYPTED",
+								"value": "Yes, Daddy",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "attachments[]",
+									"type": "file",
+									"src": "/C:/Users/Rangga/Pictures/GI team.png"
+								},
+								{
+									"key": "attachments[]",
+									"type": "file",
+									"src": "/C:/Users/Rangga/Pictures/scascdascax.png",
+									"disabled": true
+								},
+								{
+									"key": "letter_type_id",
+									"value": "9",
+									"type": "text"
+								},
+								{
+									"key": "field_id[]",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "klasifikasi",
+									"value": "a",
+									"type": "text"
+								},
+								{
+									"key": "derajat",
+									"value": "4ew",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "tbtrhtrhtrhtrht6",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}on-process-log",
+							"host": [
+								"{{url}}on-process-log"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

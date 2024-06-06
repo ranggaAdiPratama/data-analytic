@@ -1,0 +1,221 @@
+{
+	"info": {
+		"_postman_id": "9bf8eb4c-d6c6-461e-87cc-3f99da43abdf",
+		"name": "Data Analytic",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11108847",
+		"_collection_link": "https://orange-shuttle-39637.postman.co/workspace/My-Workspace~19abc2a1-782c-4d73-8aa2-d8ce678a2725/collection/11108847-9bf8eb4c-d6c6-461e-87cc-3f99da43abdf?action=share&source=collection_link&creator=11108847"
+	},
+	"item": [
+		{
+			"name": "interface",
+			"item": [
+				{
+					"name": "interface list",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{url}}interfaces",
+							"host": [
+								"{{url}}interfaces"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "interface by id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{url}}interfaces/*2000001",
+							"host": [
+								"{{url}}interfaces"
+							],
+							"path": [
+								"*2000001"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "interface wireless list",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{url}}interfaces/wireless",
+							"host": [
+								"{{url}}interfaces"
+							],
+							"path": [
+								"wireless"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ip",
+			"item": [
+				{
+					"name": "dhcp server list",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{url}}ip/dhcp-servers",
+							"host": [
+								"{{url}}ip"
+							],
+							"path": [
+								"dhcp-servers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ip address list",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{url}}ip/addresses",
+							"host": [
+								"{{url}}ip"
+							],
+							"path": [
+								"addresses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ip routes list",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{url}}ip/routes",
+							"host": [
+								"{{url}}ip"
+							],
+							"path": [
+								"routes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ip firewall list",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{url}}ip/firewalls",
+							"host": [
+								"{{url}}ip"
+							],
+							"path": [
+								"firewalls"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "dhcp client list",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{url}}ip/dhcp-clients",
+							"host": [
+								"{{url}}ip"
+							],
+							"path": [
+								"dhcp-clients"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "system",
+			"item": [
+				{
+					"name": "resource",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{url}}system/resources",
+							"host": [
+								"{{url}}system"
+							],
+							"path": [
+								"resources"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
