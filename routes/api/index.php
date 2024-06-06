@@ -16,4 +16,6 @@ Route::get('/ip/dhcp-servers', [MicroticController::class, 'ipDhcpServerList']);
 Route::get('/ip/firewalls', [MicroticController::class, 'ipFirewallsList']);
 Route::get('/ip/routes', [MicroticController::class, 'ipRoutesList']);
 
+Route::get('/logs', [MicroticController::class, 'logList']);
+
 Route::get('/system/resources', [MicroticController::class, 'systemResources']);

@@ -160,6 +160,61 @@ class MicroticController extends Controller
         }
     }
 
+    public function logList(Request $request)
+    {
+        try {
+            $response = $this->client->query('/log/print')->read();
+
+            $data = [];
+
+            if (strlen($request->ethernet) > 0) {
+                foreach ($response as $row) {
+                    $message = $row['message'];
+
+                    $ip = null;
+
+                    $logInterface = null;
+
+                    if (strpos($message, $request->ethernet) !== false) {
+                        if (!preg_match('/to \[(http[s]?:\/\/[^\]]+)\]/', $message, $matches)) {
+                            continue;
+                        }
+
+                        $data[] = [
+                            ".id"   => $row['.id'],
+                            "time"  => $row['time'],
+                            'url'   => $matches[1]
+                        ];
+                    } else {
+                        continue;
+                    }
+                }
+            } else {
+                foreach ($response as $row) {
+                    $message = $row['message'];
+
+                    if (preg_match('/to \[(http[s]?:\/\/[^\]]+)\]/', $message, $matches)) {
+                        $data[] = [
+                            ".id"   => $row['.id'],
+                            "time"  => $row['time'],
+                            'url'   => $matches[1]
+                        ];
+                    } else {
+                        continue;
+                    }
+                }
+            }
+
+            return $data;
+        } catch (Exception $e) {
+            if (env('APP_APP_DEBUG') == true) {
+                dd($e);
+            }
+
+            return apiResponse($e->getMessage(), 500, $e);
+        }
+    }
+
     public function systemResources()
     {
         try {
