@@ -14,7 +14,7 @@ class MicroticController extends Controller
     public function __construct()
     {
         $this->client = new Client([
-            'host' => '103.118.175.82',
+            'host' => '191.101.190.202',
             'user' => 'monitor_stb',
             'pass' => 'Joseph12345!',
             'port' => 8042,
@@ -100,21 +100,6 @@ class MicroticController extends Controller
         }
     }
 
-    public function ipDhcpClientList()
-    {
-        try {
-            $response = $this->client->query('/ip/dhcp-client/print')->read();
-
-            return $response;
-        } catch (Exception $e) {
-            if (env('APP_APP_DEBUG') == true) {
-                dd($e);
-            }
-
-            return apiResponse($e->getMessage(), 500, $e);
-        }
-    }
-
     public function ipDhcpServerList()
     {
         try {
@@ -130,10 +115,16 @@ class MicroticController extends Controller
         }
     }
 
-    public function ipFirewallsList()
+    public function ipKidControlList()
     {
         try {
-            $response = $this->client->query('/ip/firewall/filter/print')->read();
+            // $response = $this->client->query('/ip/firewall/address-list/print')->read();
+
+            // $query = (new Query('/ip/firewall/address-list/print'));
+            $query = (new Query('/ip/kid-control/device/print'));
+            // ->where('list', 'kid-control');
+
+            $response = $this->client->query($query)->read();
 
             return $response;
         } catch (Exception $e) {

@@ -11,10 +11,9 @@ Route::get('/interfaces/wireless', [MicroticController::class, 'interfaceWireles
 Route::get('/interfaces/{id}', [MicroticController::class, 'interfaceById']);
 
 Route::get('/ip/addresses', [MicroticController::class, 'ipAddressList']);
-Route::get('/ip/dhcp-clients', [MicroticController::class, 'ipDhcpClientList']);
 Route::get('/ip/dhcp-servers', [MicroticController::class, 'ipDhcpServerList']);
-Route::get('/ip/firewalls', [MicroticController::class, 'ipFirewallsList']);
 Route::get('/ip/routes', [MicroticController::class, 'ipRoutesList']);
+Route::get('/ip/kid-control', [MicroticController::class, 'ipKidControlList']);
 
 Route::get('/logs', [MicroticController::class, 'logList']);
 
