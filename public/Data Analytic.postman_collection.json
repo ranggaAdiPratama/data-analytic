@@ -40,12 +40,12 @@
 							}
 						],
 						"url": {
-							"raw": "{{url}}interfaces/*1",
+							"raw": "{{url}}interfaces/ether3",
 							"host": [
 								"{{url}}interfaces"
 							],
 							"path": [
-								"*1"
+								"ether3"
 							]
 						}
 					},
@@ -209,6 +209,28 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "kid control",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{url}}ip/kid-control",
+							"host": [
+								"{{url}}ip"
+							],
+							"path": [
+								"kid-control"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -232,6 +254,37 @@
 							],
 							"path": [
 								"resources"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "log",
+			"item": [
+				{
+					"name": "log",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{url}}logs",
+							"host": [
+								"{{url}}logs"
+							],
+							"query": [
+								{
+									"key": "ethernet",
+									"value": "ether1",
+									"disabled": true
+								}
 							]
 						}
 					},
