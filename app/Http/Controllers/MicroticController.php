@@ -255,9 +255,9 @@ class MicroticController extends Controller
                 $HDDUsagePercentage = ($usedHDD / $totalHDD) * 100;
 
                 $data = [
-                    'cpu'       => $row['cpu-load'],
-                    'hdd'       => $HDDUsagePercentage,
-                    'memory'    => $memoryUsagePercentage,
+                    'cpu'       => round($row['cpu-load'], 2),
+                    'hdd'       => round($HDDUsagePercentage, 2),
+                    'memory'    => round($memoryUsagePercentage, 2),
                 ];
             }
 
