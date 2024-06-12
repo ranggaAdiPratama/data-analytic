@@ -221,12 +221,47 @@ class MicroticController extends Controller
         }
     }
 
-    public function systemResources()
+    public function systemResources($id)
     {
         try {
-            $response = $this->client->query('/system/resource/print')->read();
+            $router = DB::table('routers')
+                ->where('id', $id)
+                ->first();
 
-            return $response;
+            $client = new Client([
+                'host' => $router->host,
+                'user' => $router->username,
+                'pass' => $router->pass,
+                'port' => $router->port,
+            ]);
+
+            $response = $client->query('/system/resource/print')->read();
+
+            $data = [];
+
+            foreach ($response as $row) {
+                $freeMemory = (int)$row['free-memory'];
+                $totalMemory = (int)$row['total-memory'];
+
+                $usedMemory = $totalMemory - $freeMemory;
+
+                $memoryUsagePercentage = ($usedMemory / $totalMemory) * 100;
+
+                $freeHDD = (int)$row['free-hdd-space'];
+                $totalHDD = (int)$row['total-hdd-space'];
+
+                $usedHDD = $totalHDD - $freeHDD;
+
+                $HDDUsagePercentage = ($usedHDD / $totalHDD) * 100;
+
+                $data = [
+                    'cpu'       => $row['cpu-load'],
+                    'hdd'       => $HDDUsagePercentage,
+                    'memory'    => $memoryUsagePercentage,
+                ];
+            }
+
+            return $data;
         } catch (Exception $e) {
             if (env('APP_DEBUG') == true) {
                 dd($e);

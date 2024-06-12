@@ -17,4 +17,4 @@ Route::get('/logs', [MicroticController::class, 'logList']);
 Route::get('/top-host-name/{id}', [MicroticController::class, 'topHostName']);
 Route::get('/top-sites/{id}', [MicroticController::class, 'topSites']);
 
-Route::get('/system/resources', [MicroticController::class, 'systemResources']);
+Route::get('/system/resources/{id}', [MicroticController::class, 'systemResources']);
