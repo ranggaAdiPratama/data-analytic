@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use RouterOS\Client;
 use RouterOS\Query;
 
@@ -21,18 +22,28 @@ class MicroticController extends Controller
         ]);
     }
 
-    public function interfaceById($id)
+    public function bandwidth()
     {
         try {
-            $query = (new Query('/interface/monitor-traffic'))
-                ->equal('interface', $id)
-                ->equal('duration', '1s');
+            $interface = request()->has('interface') && strlen(request()->has('interface')) > 0 ? request()->interface : 'ether1';
 
-            $response = $this->client->query($query)->read();
+            $data = [];
 
-            return $response;
+            $response = $this->client->query('/interface/print')->read();
+
+            foreach ($response as $record) {
+                if ($record['name'] == $interface) {
+                    $data[] = [
+                        'timestamp' => $record['last-link-up-time'],
+                        'tx_byte' => $record["tx-byte"],
+                        'rx_byte' => $record["rx-byte"]
+                    ];
+                }
+            }
+
+            return $data;
         } catch (Exception $e) {
-            if (env('APP_APP_DEBUG') == true) {
+            if (env('APP_DEBUG') == true) {
                 dd($e);
             }
 
@@ -40,44 +51,69 @@ class MicroticController extends Controller
         }
     }
 
-    public function interfaceEthernetList()
+    public function interfaceList($id)
     {
         try {
-            $response = $this->client->query('/interface/ethernet/print')->read();
+            $router = DB::table('routers')
+                ->where('id', $id)
+                ->first();
 
-            return $response;
+            $client = new Client([
+                'host' => $router->host,
+                'user' => $router->username,
+                'pass' => $router->pass,
+                'port' => $router->port,
+            ]);
+
+            $response = $this->client->query('/interface/print')->read();
+
+            $data = [];
+
+            foreach ($response as $row) {
+                $data[] = [
+                    'name'      => $row['name'],
+                    'rx_byte'   => $row['rx-byte'],
+                    'tx_byte'   => $row['tx-byte']
+                ];
+            }
+
+            return $data;
         } catch (Exception $e) {
-            if (env('APP_APP_DEBUG') == true) {
-                dd($e);
+            dd($e);
+            if (env('APP_DEBUG') == true) {
             }
 
             return apiResponse($e->getMessage(), 500, $e);
         }
     }
 
-    public function interfaceList()
+    public function interfaceEthernetList($id)
     {
         try {
-            $response = $this->client->query('/interface/list/print')->read();
+            $router = DB::table('routers')
+                ->where('id', $id)
+                ->first();
 
-            return $response;
-        } catch (Exception $e) {
-            if (env('APP_APP_DEBUG') == true) {
-                dd($e);
+            $client = new Client([
+                'host' => $router->host,
+                'user' => $router->username,
+                'pass' => $router->pass,
+                'port' => $router->port,
+            ]);
+
+            $response = $client->query('/interface/ethernet/print')->read();
+
+            $data = [];
+
+            foreach ($response as $row) {
+                $data[] = [
+                    'name'  => $row['name']
+                ];
             }
 
-            return apiResponse($e->getMessage(), 500, $e);
-        }
-    }
-
-    public function interfaceWirelessList()
-    {
-        try {
-            $response = $this->client->query('/interface/wireless/print')->read();
-
-            return $response;
+            return $data;
         } catch (Exception $e) {
-            if (env('APP_APP_DEBUG') == true) {
+            if (env('APP_DEBUG') == true) {
                 dd($e);
             }
 
@@ -92,7 +128,7 @@ class MicroticController extends Controller
 
             return $response;
         } catch (Exception $e) {
-            if (env('APP_APP_DEBUG') == true) {
+            if (env('APP_DEBUG') == true) {
                 dd($e);
             }
 
@@ -107,7 +143,7 @@ class MicroticController extends Controller
 
             return $response;
         } catch (Exception $e) {
-            if (env('APP_APP_DEBUG') == true) {
+            if (env('APP_DEBUG') == true) {
                 dd($e);
             }
 
@@ -128,7 +164,7 @@ class MicroticController extends Controller
 
             return $response;
         } catch (Exception $e) {
-            if (env('APP_APP_DEBUG') == true) {
+            if (env('APP_DEBUG') == true) {
                 dd($e);
             }
 
@@ -143,7 +179,7 @@ class MicroticController extends Controller
 
             return $response;
         } catch (Exception $e) {
-            if (env('APP_APP_DEBUG') == true) {
+            if (env('APP_DEBUG') == true) {
                 dd($e);
             }
 
@@ -198,7 +234,7 @@ class MicroticController extends Controller
 
             return $data;
         } catch (Exception $e) {
-            if (env('APP_APP_DEBUG') == true) {
+            if (env('APP_DEBUG') == true) {
                 dd($e);
             }
 
@@ -213,8 +249,44 @@ class MicroticController extends Controller
 
             return $response;
         } catch (Exception $e) {
-            if (env('APP_APP_DEBUG') == true) {
+            if (env('APP_DEBUG') == true) {
                 dd($e);
+            }
+
+            return apiResponse($e->getMessage(), 500, $e);
+        }
+    }
+
+    public function topHostName($id)
+    {
+        try {
+            $router = DB::table('routers')
+                ->where('id', $id)
+                ->first();
+
+            $client = new Client([
+                'host' => $router->host,
+                'user' => $router->username,
+                'pass' => $router->pass,
+                'port' => $router->port,
+            ]);
+
+            $response = $client->query('/ip/kid-control/device/print')->read();
+
+            $data = [];
+
+            foreach ($response as $row) {
+                $data[] = [
+                    'id'            => $row['.id'],
+                    'name'          => strlen($row['name']) > 0 ? $row['name'] : $row['ip-address'],
+                    'bytes_down'    => $row['bytes-down']
+                ];
+            }
+
+            return $data;
+        } catch (Exception $e) {
+            dd($e);
+            if (env('APP_DEBUG') == true) {
             }
 
             return apiResponse($e->getMessage(), 500, $e);

@@ -8,27 +8,45 @@ function apiResponse($message, $code, $data = null)
         'data'          => $data
     ], $code);
 }
-// NOTE get user field id
-function myFieldId()
+
+function calculateLeaseTimestamp($lastSeen)
 {
-    $identifier = DB::table('users')
-        ->join('user_details', 'user_details.user_id', '=', 'users.id')
-        ->select([
-            'users.id', 'users.name', 'users.username',
-            'users.email', 'users.deleted_at', 'user_details.field_id',
-            'user_details.signature'
-        ])
-        ->where('users.id', auth('api')->user()->id)
-        ->first();
+    $duration = dhcpLeaseDurationToSeconds($lastSeen);
 
-    $field = DB::table('fields')
-        ->whereNull('deleted_at')
-        ->where('id', $identifier->field_id)
-        ->first();
+    $currentTimestamp = time();
+    $leaseTimestamp = $currentTimestamp - $duration;
 
-    return $field ? $field->id : '';
+    return $leaseTimestamp;
 }
-// NOTE routing
+
+function dhcpLeaseDurationToSeconds($duration)
+{
+    if (strpos($duration, 'h') && strpos($duration, 'm') && strpos($duration, 's')) {
+        preg_match('/(\d+)h(\d+)m(\d+)s/', $duration, $matches);
+        $hours = isset($matches[1]) ? intval($matches[1]) : 0;
+        $minutes = isset($matches[2]) ? intval($matches[2]) : 0;
+        $seconds = intval($matches[3]);
+
+        $totalSeconds = ($hours * 3600) + ($minutes * 60) + $seconds;
+    } elseif (strpos($duration, 'm') && strpos($duration, 's')) {
+        preg_match('/(\d+)m(\d+)s/', $duration, $matches);
+        $hours = 0;
+        $minutes = isset($matches[1]) ? intval($matches[2]) : 0;
+        $seconds = intval($matches[2]);
+
+        $totalSeconds = ($hours * 3600) + ($minutes * 60) + $seconds;
+    } else {
+        preg_match('/(\d+)s/', $duration, $matches);
+        $hours = 0;
+        $minutes =  0;
+        $seconds = intval($matches[1]);
+
+        $totalSeconds = ($hours * 3600) + ($minutes * 60) + $seconds;
+    }
+
+    return $totalSeconds;
+}
+
 function includeRouteFiles($folder)
 {
     $directory = $folder;
@@ -46,17 +64,4 @@ function includeRouteFiles($folder)
             require $filename;
         }
     }
-}
-// NOTE string to array
-function stringtoArray($string)
-{
-    $hay    = [
-        '[', ']', '"'
-    ];
-
-    $data   = str_replace($hay, '', $string);
-
-    $data   = explode(',', $data);
-
-    return $data;
 }

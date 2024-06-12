@@ -84,12 +84,13 @@
 							}
 						],
 						"url": {
-							"raw": "{{url}}interfaces/ethernet",
+							"raw": "{{url}}interfaces/ethernet/1",
 							"host": [
 								"{{url}}interfaces"
 							],
 							"path": [
-								"ethernet"
+								"ethernet",
+								"1"
 							]
 						}
 					},
@@ -291,6 +292,28 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "top host name",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{url}}top-host-name/1",
+					"host": [
+						"{{url}}top-host-name"
+					],
+					"path": [
+						"1"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
