@@ -314,6 +314,28 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "top sites",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{url}}top-sites/1",
+					"host": [
+						"{{url}}top-sites"
+					],
+					"path": [
+						"1"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

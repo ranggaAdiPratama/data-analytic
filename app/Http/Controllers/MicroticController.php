@@ -151,27 +151,6 @@ class MicroticController extends Controller
         }
     }
 
-    public function ipKidControlList()
-    {
-        try {
-            // $response = $this->client->query('/ip/firewall/address-list/print')->read();
-
-            // $query = (new Query('/ip/firewall/address-list/print'));
-            $query = (new Query('/ip/kid-control/device/print'));
-            // ->where('list', 'kid-control');
-
-            $response = $this->client->query($query)->read();
-
-            return $response;
-        } catch (Exception $e) {
-            if (env('APP_DEBUG') == true) {
-                dd($e);
-            }
-
-            return apiResponse($e->getMessage(), 500, $e);
-        }
-    }
-
     public function ipRoutesList()
     {
         try {
@@ -285,8 +264,44 @@ class MicroticController extends Controller
 
             return $data;
         } catch (Exception $e) {
-            dd($e);
             if (env('APP_DEBUG') == true) {
+                dd($e);
+            }
+
+            return apiResponse($e->getMessage(), 500, $e);
+        }
+    }
+
+    public function topSites($id)
+    {
+        try {
+            $router = DB::table('routers')
+                ->where('id', $id)
+                ->first();
+
+            $client = new Client([
+                'host' => $router->host,
+                'user' => $router->username,
+                'pass' => $router->pass,
+                'port' => $router->port,
+            ]);
+
+            $response = $client->query('/ip/kid-control/device/print')->read();
+
+            $data = [];
+
+            foreach ($response as $row) {
+                $data[] = [
+                    'id'            => $row['.id'],
+                    'name'          => strlen($row['name']) > 0 ? $row['name'] : $row['ip-address'],
+                    'activity'      => $row['activity']
+                ];
+            }
+
+            return $data;
+        } catch (Exception $e) {
+            if (env('APP_DEBUG') == true) {
+                dd($e);
             }
 
             return apiResponse($e->getMessage(), 500, $e);
