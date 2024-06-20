@@ -8,9 +8,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/interfaces/{id}', [MicroticController::class, 'interfaceList']);
 Route::get('/interfaces/ethernet/{id}', [MicroticController::class, 'interfaceEthernetList']);
 
-Route::get('/ip/addresses', [MicroticController::class, 'ipAddressList']);
-Route::get('/ip/dhcp-servers', [MicroticController::class, 'ipDhcpServerList']);
-Route::get('/ip/routes', [MicroticController::class, 'ipRoutesList']);
+Route::get('/dns/{id}', [MicroticController::class, 'dns']);
+Route::get('/ip/dhcp-servers/{id}', [MicroticController::class, 'ipDhcpServerList']);
+Route::get('/ip/hotspot/{id}', [MicroticController::class, 'hotspotList']);
 
 Route::get('/logs', [MicroticController::class, 'logList']);
 

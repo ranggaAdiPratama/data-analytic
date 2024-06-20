@@ -51,6 +51,32 @@ class MicroticController extends Controller
         }
     }
 
+    public function dns($id)
+    {
+        try {
+            $router = DB::table('routers')
+                ->where('id', $id)
+                ->first();
+
+            $client = new Client([
+                'host' => $router->host,
+                'user' => $router->username,
+                'pass' => $router->pass,
+                'port' => $router->port,
+            ]);
+
+            $response = $client->query('/ip/dns/cache/all/print')->read();
+
+            return $response;
+        } catch (Exception $e) {
+            if (env('APP_DEBUG') == true) {
+                dd($e);
+            }
+
+            return apiResponse($e->getMessage(), 500, $e);
+        }
+    }
+
     public function interfaceList($id)
     {
         try {
@@ -121,12 +147,49 @@ class MicroticController extends Controller
         }
     }
 
-    public function ipAddressList()
+    public function ipDhcpServerList($id)
     {
         try {
-            $response = $this->client->query('/ip/address/print')->read();
+            $router = DB::table('routers')
+                ->where('id', $id)
+                ->first();
 
-            return $response;
+            $client = new Client([
+                'host' => $router->host,
+                'user' => $router->username,
+                'pass' => $router->pass,
+                'port' => $router->port,
+            ]);
+
+            $response = $client->query('/ip/dhcp-server/lease/print')->read();
+
+            $detail = [];
+
+            $active     = 0;
+            $inactive   = 0;
+
+            foreach ($response as $row) {
+                $status = isset($row['last-seen']) ? 'active' : 'inctive';
+
+                if ($status == 'active') {
+                    $active =  $active + 1;
+                } else {
+                    $inactive =  $inactive + 1;
+                }
+
+                $detail[] = [
+                    'address'   => $row['address'],
+                    'name'      => $row['server'],
+                    'last_seen' => isset($row['last-seen']) ? dhcpLeaseDurationToSeconds($row['last-seen']) : '',
+                    'status'    => $status,
+                ];
+            }
+
+            return [
+                'active'        => $active,
+                'detail'        => $detail,
+                'inactive'      => $inactive,
+            ];
         } catch (Exception $e) {
             if (env('APP_DEBUG') == true) {
                 dd($e);
@@ -136,25 +199,21 @@ class MicroticController extends Controller
         }
     }
 
-    public function ipDhcpServerList()
+    public function hotspotList($id)
     {
         try {
-            $response = $this->client->query('/ip/dhcp-server/print')->read();
+            $router = DB::table('routers')
+                ->where('id', $id)
+                ->first();
 
-            return $response;
-        } catch (Exception $e) {
-            if (env('APP_DEBUG') == true) {
-                dd($e);
-            }
+            $client = new Client([
+                'host' => $router->host,
+                'user' => $router->username,
+                'pass' => $router->pass,
+                'port' => $router->port,
+            ]);
 
-            return apiResponse($e->getMessage(), 500, $e);
-        }
-    }
-
-    public function ipRoutesList()
-    {
-        try {
-            $response = $this->client->query('/ip/route/print')->read();
+            $response = $client->query('/ip/hotspot/active/print')->read();
 
             return $response;
         } catch (Exception $e) {
