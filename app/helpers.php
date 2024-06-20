@@ -52,7 +52,6 @@ function dhcpLeaseDurationToSeconds($duration)
     } else if (strpos($duration, 'h') && strpos($duration, 'm') && strpos($duration, 's')) {
         preg_match('/(\d+)h(\d+)m(\d+)s/', $duration, $matches);
 
-
         $days = 0;
         $hours = isset($matches[1]) ? intval($matches[1]) : 0;
         $minutes = isset($matches[2]) ? intval($matches[2]) : 0;

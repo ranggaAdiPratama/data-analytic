@@ -179,7 +179,7 @@ class MicroticController extends Controller
 
                 $detail[] = [
                     'address'   => $row['address'],
-                    'name'      => $row['server'],
+                    'name'      => $row['host-name'],
                     'last_seen' => isset($row['last-seen']) ? dhcpLeaseDurationToSeconds($row['last-seen']) : '',
                     'status'    => $status,
                 ];
