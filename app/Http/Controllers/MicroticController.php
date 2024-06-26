@@ -230,6 +230,8 @@ class MicroticController extends Controller
         try {
             $response = $this->client->query('/log/print')->read();
 
+            return $response;
+
             $data = [];
 
             if (strlen($request->ethernet) > 0) {
