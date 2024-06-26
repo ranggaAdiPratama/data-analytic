@@ -77,6 +77,32 @@ class MicroticController extends Controller
         }
     }
 
+    public function indentity($id)
+    {
+        try {
+            $router = DB::table('routers')
+                ->where('id', $id)
+                ->first();
+
+            $client = new Client([
+                'host' => $router->host,
+                'user' => $router->username,
+                'pass' => $router->pass,
+                'port' => $router->port,
+            ]);
+
+            $response = $this->client->query('/system/identity/print')->read();
+
+            return $response;
+        } catch (Exception $e) {
+            if (env('APP_DEBUG') == true) {
+                dd($e);
+            }
+
+            return apiResponse($e->getMessage(), 500, $e);
+        }
+    }
+
     public function interfaceList($id)
     {
         try {
@@ -105,8 +131,8 @@ class MicroticController extends Controller
 
             return $data;
         } catch (Exception $e) {
-            dd($e);
             if (env('APP_DEBUG') == true) {
+                dd($e);
             }
 
             return apiResponse($e->getMessage(), 500, $e);
@@ -179,7 +205,7 @@ class MicroticController extends Controller
 
                 $detail[] = [
                     'address'   => $row['address'],
-                    'name'      => $row['host-name'],
+                    'name'      => isset($row['host-name']) ? $row['host-name'] : '',
                     'last_seen' => isset($row['last-seen']) ? dhcpLeaseDurationToSeconds($row['last-seen']) : '',
                     'status'    => $status,
                 ];
@@ -273,6 +299,32 @@ class MicroticController extends Controller
             }
 
             return $data;
+        } catch (Exception $e) {
+            if (env('APP_DEBUG') == true) {
+                dd($e);
+            }
+
+            return apiResponse($e->getMessage(), 500, $e);
+        }
+    }
+
+    public function routeList($id)
+    {
+        try {
+            $router = DB::table('routers')
+                ->where('id', $id)
+                ->first();
+
+            $client = new Client([
+                'host' => $router->host,
+                'user' => $router->username,
+                'pass' => $router->pass,
+                'port' => $router->port,
+            ]);
+
+            $response = $client->query('/ip/route/print')->read();
+
+            return $response;
         } catch (Exception $e) {
             if (env('APP_DEBUG') == true) {
                 dd($e);

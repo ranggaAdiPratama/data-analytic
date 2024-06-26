@@ -28,6 +28,41 @@ function dhcpLeaseDurationToSeconds($duration)
         $hours = isset($matches[3]) ? intval($matches[3]) : 0;
         $minutes = isset($matches[4]) ? intval($matches[4]) : 0;
         $seconds = intval($matches[5]);
+    } else if (strpos($duration, 'w') && strpos($duration, 'd') && strpos($duration, 'h') && strpos($duration, 'm')) {
+        preg_match('/(\d+)w(\d+)d(\d+)h(\d+)m/', $duration, $matches);
+
+        $days = isset($matches[1]) ? (intval($matches[1]) * 7) + intval($matches[2])  : 0;
+        $hours = isset($matches[3]) ? intval($matches[3]) : 0;
+        $minutes = isset($matches[4]) ? intval($matches[4]) : 0;
+        $seconds = 0;
+    } else if (strpos($duration, 'w') && strpos($duration, 'd') && strpos($duration, 'm')) {
+        preg_match('/(\d+)w(\d+)d(\d+)m/', $duration, $matches);
+
+        $days = isset($matches[1]) ? (intval($matches[1]) * 7) + intval($matches[2])  : 0;
+        $hours = 0;
+        $minutes = isset($matches[3]) ? intval($matches[3]) : 0;
+        $seconds = 0;
+    } else if (strpos($duration, 'w') && strpos($duration, 'd') && strpos($duration, 'h')) {
+        preg_match('/(\d+)w(\d+)d(\d+)h/', $duration, $matches);
+
+        $days = isset($matches[1]) ? (intval($matches[1]) * 7) + intval($matches[2])  : 0;
+        $hours = isset($matches[3]) ? intval($matches[3]) : 0;
+        $minutes = 0;
+        $seconds = 0;
+    } else if (strpos($duration, 'w') && strpos($duration, 'd')) {
+        preg_match('/(\d+)w(\d+)d/', $duration, $matches);
+
+        $days = isset($matches[1]) ? intval($matches[1]) * 7 : 0;
+        $hours = 0;
+        $minutes = 0;
+        $seconds = 0;
+    } else if (strpos($duration, 'w')) {
+        preg_match('/(\d+)w/', $duration, $matches);
+
+        $days = isset($matches[1]) ? intval($matches[1]) : 0;
+        $hours = 0;
+        $minutes = 0;
+        $seconds = 0;
     } else if (strpos($duration, 'w') && strpos($duration, 'h') && strpos($duration, 'm') && strpos($duration, 's')) {
         preg_match('/(\d+)w(\d+)h(\d+)m(\d+)s/', $duration, $matches);
 

@@ -11,6 +11,8 @@ Route::group(['prefix' => 'laravel'], function () {
     Route::get('/dns/{id}', [MicroticController::class, 'dns']);
     Route::get('/ip/dhcp-servers/{id}', [MicroticController::class, 'ipDhcpServerList']);
     Route::get('/ip/hotspot/{id}', [MicroticController::class, 'hotspotList']);
+    Route::get('/routes/{id}', [MicroticController::class, 'routeList']);
+    Route::get('/identity/{id}', [MicroticController::class, 'indentity']);
 
     Route::get('/logs', [MicroticController::class, 'logList']);
 
