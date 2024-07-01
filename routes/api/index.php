@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 // });
 Route::get('/interfaces/{id}', [MicroticController::class, 'interfaceList']);
 Route::get('/interfaces/ethernet/{id}', [MicroticController::class, 'interfaceEthernetList']);
+Route::get('/interfaces/monitor/{id}', [MicroticController::class, 'interfaceMonitor']);
 
 Route::get('/dns/{id}', [MicroticController::class, 'dns']);
 Route::get('/ip/dhcp-servers/{id}', [MicroticController::class, 'ipDhcpServerList']);

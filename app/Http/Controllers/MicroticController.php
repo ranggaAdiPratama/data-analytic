@@ -251,6 +251,37 @@ class MicroticController extends Controller
         }
     }
 
+    public function interfaceMonitor($id)
+    {
+        try {
+            $router = DB::table('routers')
+                ->where('id', $id)
+                ->first();
+
+            $client = new Client([
+                'host' => $router->host,
+                'user' => $router->username,
+                'pass' => $router->pass,
+                'port' => $router->port,
+            ]);
+
+            $query =
+                (new Query('/interface/monitor-traffic'))
+                ->equal('interface', $router->ethernet)
+                ->equal('duration', '1s');
+
+            $response = $client->query($query)->read();
+
+            return $response;
+        } catch (Exception $e) {
+            if (env('APP_DEBUG') == true) {
+                dd($e);
+            }
+
+            return apiResponse($e->getMessage(), 500, $e);
+        }
+    }
+
     public function logList(Request $request)
     {
         try {
